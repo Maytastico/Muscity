@@ -1,0 +1,130 @@
+@startuml
+entity User{
+    * u_id : number <<autoincrement>> <<PK>>
+    username : String
+    password : String
+}
+
+entity User_Likes_Title{
+    * ult_id : number <<autoincrement>> <<PK>>
+    **u_id** : number <<FK>>
+    **t_id** : number <<FK>>
+}
+
+entity Title{
+    * t_id : number <<autoincrement>> <<PK>>
+    name : String
+    playtime : number
+    release_date : Date
+    file_path : String
+    thumbnail_path : String
+}
+
+entity Title_Belongs_To_Album{
+    * tbta_id : number <<autoincrement>> <<PK>>
+    **t_id** : number <<FK>>
+    **a_id** : number <<FK>>
+}
+
+entity Album{
+    * a_id: number <<autoincrement>> <<PK>>
+    name : String
+    created: Date
+
+}
+
+entity Album_Belongs_To_Interpret{
+    * abti_id : number <<PK>>
+    **a_id** : number <<FK>>
+    **i_id** : number <<FK>>
+}
+
+entity Interpret{
+    * i_id : number <<autoincrement>> <<PK>>
+    name : String
+    born : Date
+}
+
+entity Genre{
+    * g_id : number <<autoincrement>> <<PK>>
+    name : String
+    description : String
+}
+
+entity Interpret_Plays_Genre{
+    * ipg_id : number <<autoincrement>> <<PK>>
+    **i_id** : number <<FK>>
+    **g_id** : number <<FK>>
+}
+
+entity Atmosphere{
+    * at_id : number <<autoincrement>> <<PK>>
+    atmosphere : String
+    description : String
+}
+
+entity Title_Has_Atmosphere{
+    * tha_id : number <<autoincrement>> <<PK>>
+    **at_id** : number <<FK>>
+    **t_id** : number <<FK>>
+}
+
+entity Title_Has_Genre{
+    * thg_id : number <<autoincrement>> <<PK>>
+    **t_id**: number <<FK>>
+    **g_id**: number <<FK>>
+}
+
+entity Playlist{
+    * p_id:number <<autoincrement>> <<PK>>
+    name : String
+    description : String
+    is_Public : boolean
+}
+
+entity Playlist_Created_By{
+    * pcb_id:number <<autoincrement>> <<PK>>
+    **p_id**:number <<FK>>
+    **u_id**:number <<FK>>
+}
+
+entity Title_In_Playlist{
+    * tip_id : number <<autoincrement>> <<PK>>
+    **t_id**:number <<FK>>
+    **p_id**:number <<FK>>
+}
+
+entity Playlist_Can_Be_Seen_By{
+    * pcbsb_id: number <<autoincrement>> <<PK>>
+    **u_id**:number <<FK>>
+    **p_id**:number <<FK>>
+}
+
+User 	}|-- User_Likes_Title
+Title 	}|-- User_Likes_Title
+
+Album 	}|-- Title_Belongs_To_Album
+Title 	}|-- Title_Belongs_To_Album
+
+Album }|-- Album_Belongs_To_Interpret
+Interpret }|-- Album_Belongs_To_Interpret
+
+Genre }|-- Interpret_Plays_Genre
+Interpret }|-- Interpret_Plays_Genre
+
+Atmosphere }|-- Title_Has_Atmosphere
+Title }|-- Title_Has_Atmosphere
+
+Playlist }|-- Playlist_Created_By
+User }|-- Playlist_Created_By
+
+Title }|-- Title_Has_Genre
+Genre }|-- Title_Has_Genre
+
+Title }|-- Title_In_Playlist
+Playlist }|-- Title_In_Playlist
+
+Playlist }|-- Playlist_Can_Be_Seen_By
+User }|-- Playlist_Can_Be_Seen_By
+
+@enduml

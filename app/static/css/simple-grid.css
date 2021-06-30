@@ -1,0 +1,41 @@
+*{
+  font-family: 'Helvetica';
+}
+
+.horizontal-center{
+  margin: auto;
+}
+
+.vertical-center {
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.container{
+  height:100vh;
+}
+
+.row {
+  display: flex;
+  flex-flow: row wrap;
+  position: relative;
+  height: 100%
+}
+
+.row.center{
+  justify-content: center;
+}
+
+.row.verticalCenter{
+  align-items: center;
+}
+
+@media (max-width:900px) and (min-width:601px){
+  #login-view.w3-third {
+    width: 50%;
+  }
+
+  #
+}

@@ -1,0 +1,29 @@
+@import 'pallet.css';
+
+img{
+    display: block;
+    width: 100%;
+}
+
+body{
+    min-height: 100vh;
+}
+
+#logo{
+    max-width: 20rem;
+}
+
+#logo.white{
+    background-color: white;
+    border-radius: 10px;
+}
+
+#login-view{
+    background-color: var(--jazzberry-jam);
+    height: 100%;
+}
+
+
+#login-background{
+    background:linear-gradient(90deg, white 0%, var(--middle-blue-green));
+}

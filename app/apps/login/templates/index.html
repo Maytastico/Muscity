@@ -1,4 +1,24 @@
 {% extends "layout.html" %}
 {% block content %}
-<p>Hi</p>
+<div class="container">
+    <div class="w3-row row start">
+        <section id="login-view" class="w3-third w3-container row center verticalCenter">
+            <div id="login-form">
+                <div id="logo" class="white center-horizontal">
+                    <img src="/static/img/logo.svg">
+                    <form class="row center" action="/login" method="POST">
+                        <div class="center-horizontal">
+                            <input name="username" placeholder="Username" type="text">
+                            <input name="password" placeholder="Password" type="password">
+                            <button type="submit">Log In</button>
+                        </div>
+                    </form>
+                </div>
+        </section>
+        <div id="login-background" class="w3-twothird w3-container ">
+
+        </div>
+    </div>
+</div>
+
 {% endblock content %}

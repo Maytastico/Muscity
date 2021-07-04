@@ -1,11 +1,11 @@
 @import 'pallet.css';
 
-form input, form button{
+form input, form button, form a{
     display: block;
     margin: 1.2em 0;
     font-size: 1em;
     /* box-shadow: 0 2px 1px black; */
-    transition: 0.5s;
+    transition: 0.5s box-shadow;
 }
 
 form input{
@@ -17,20 +17,24 @@ form input{
     
 }
 
-input:hover, button:hover{
+input:hover, button:hover, a.button:hover{
     box-shadow: 0 3px 3px black;
 }
 
-input:focus, button:focus{
+input:focus, button:focus, a.button:focus{
     border: gray solid 1px;
     border-bottom-color: var(--y-in-mn-blue);
     box-shadow: 0 3px 3px black;
 }
 
-form button{
-    text-align: center;
+button, form a, a.button{
     padding: 0.5em 2em;
     height: 2.5em;
+    border: none;
+}
+
+form button, a.button{
+    text-align: center;
     background-color: var(--middle-blue-green);
     border: none;
     border-radius: 20em;

@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/mnt/d/Cloud/Personal/Documents/OwnProjects/Music_Management_Tool/app/env"
+set -gx VIRTUAL_ENV "/mnt/d/Cloud/Personal/Documents/OwnProjects/Muscity2/Music_Management_Tool/app/env"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

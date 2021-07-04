@@ -1,4 +1,5 @@
 @import 'pallet.css';
+@import 'element-config.css';
 
 img{
     display: block;
@@ -15,7 +16,7 @@ body{
 
 #logo.white{
     background-color: white;
-    border-radius: 10px;
+    border-radius: var(--element-radius);
 }
 
 #login-view{

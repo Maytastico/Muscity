@@ -1,0 +1,32 @@
+@import 'element-config.css';
+@import 'pallet.css';
+
+div.notify{
+    text-align: center;
+    font-weight: bold;
+    padding: 1em;
+    border-radius: var(--element-radius);
+    background-color: var(--notification);
+    margin: 1em;
+    animation-name: appear;
+    animation-duration: 2s;
+}
+
+div.notify.alert{
+    background-color: var(--alert-notification);
+    color: white;
+}
+
+div.notify.success{
+    background-color: var(--success-notification);
+    color: white;
+}
+
+@keyframes appear {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}

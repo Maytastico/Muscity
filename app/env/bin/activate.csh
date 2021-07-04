@@ -8,7 +8,7 @@ alias deactivate 'test $?_OLD_VIRTUAL_PATH != 0 && setenv PATH "$_OLD_VIRTUAL_PA
 # Unset irrelevant variables.
 deactivate nondestructive
 
-setenv VIRTUAL_ENV "/mnt/d/Cloud/Personal/Documents/OwnProjects/Music_Management_Tool/app/env"
+setenv VIRTUAL_ENV "/mnt/d/Cloud/Personal/Documents/OwnProjects/Muscity2/Music_Management_Tool/app/env"
 
 set _OLD_VIRTUAL_PATH="$PATH"
 setenv PATH "$VIRTUAL_ENV/bin:$PATH"

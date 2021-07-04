@@ -1,8 +1,34 @@
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager, UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
+login_manager = LoginManager()
 
 
+class User(UserMixin, db.Model):
+    __tablename__ = 'user'
+
+    #Table attributes
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), nullable=False)
+    email = db.Column(db.String(80), nullable=False, unique=True)
+    password = db.Column(db.String(80), nullable=False)
+
+    #Datebase relations
+    """ user_likes = db.relationship('Titles in Playlist', secondary=user_likes_title, lazy='subquery',
+        backref=db.backref('user_likes', lazy=True)) """
+
+    def __repr__(self):
+        return '<User %r>' % self.username
+    
+    def __init__(self, username:str, email:str, password:str):
+        super().__init__()
+        self.username = username
+        self.email = email
+        self.password = generate_password_hash(password, method='sha256')
+
+""" 
 playlist_created_by = db.Table('playlist_created_by',
     db.Column('user_id', db.Integer, db.ForeignKey('users.u_id'), primary_key=True),
     db.Column('playlist_id', db.Integer, db.ForeignKey('playlist.p_id'), primary_key=True)
@@ -81,20 +107,6 @@ user_likes_title = db.Table('user_likes_title',
     db.Column('title_id', db.Integer, db.ForeignKey('titles.t_id'), primary_key=True)
 )
 
-class User(db.Model):
-    __tablename__ = 'users'
-
-    #Table attributes
-    u_id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), nullable=False)
-    password = db.Column(db.String(80), nullable=False)
-
-    #Datebase relations
-    user_likes = db.relationship('Titles in Playlist', secondary=user_likes_title, lazy='subquery',
-        backref=db.backref('user_likes', lazy=True))
-
-    def __repr__(self):
-        return '<User %r>' % self.username
 
 class Atmosphere(db.Model):
     __tablename__ = 'atmosphere'
@@ -172,3 +184,4 @@ class Interpret(db.Model):
 
     def __repr__(self):
         return '<Interpret %r>' % self.name
+ """

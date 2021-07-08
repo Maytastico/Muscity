@@ -1,4 +1,5 @@
 :root{
+    /*Basic pallet for ui elements*/
     --middle-blue-green: #adeee3ff;
     --orange-soda: #f06543ff;
     --y-in-mn-blue: #3c4f76ff;
@@ -8,6 +9,8 @@
     --maximum-blue-purple-2: #a09be7ff;
     --black-chocolate: #100b00ff;
 
+
+    /*Pallet for notification boxes*/
     --alert-notification: #ff595e;
     --success-notification: #8ac926;
     --notification: #1982c4;

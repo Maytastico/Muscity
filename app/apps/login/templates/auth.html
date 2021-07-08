@@ -1,0 +1,56 @@
+
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <div class="w3-row row start">
+        <section id="login-view" class="w3-third w3-container row center verticalCenter">
+            <div id="login-form">
+                <div id="logo" class="white center-horizontal">
+                    <img src="/static/img/logo.svg">
+                    {% include "notification.html" %}
+                    {% if mode == 'login'%}
+                        <form class="row center" action="/login" method="POST">
+                            <div class="center-horizontal">
+                                {% if email %}
+                                    <input name="email" placeholder="E-Mail" type="text" value="{{ email }}">
+                                {% else %}
+                                    <input name="email" placeholder="E-Mail" type="text">
+                                {% endif %}
+                                <input name="password" placeholder="Password" type="password">
+                                <div class="row">
+                                    <button type="submit">Log In</button>
+                                    <a href="/signup">Sign up</a>
+                                </div>
+                            </div>
+                        </form>
+                    {% endif %}
+                    {% if mode == 'signup' %}
+                        <form class="row center" action="/signup" method="POST">
+                            <div class="center-horizontal">
+                                {% if signup_data["username"] %}
+                                    <input name="username" placeholder="Username" type="text" value="{{ signup_data["username"] }}">
+                                {% else %}
+                                    <input name="username" placeholder="Username" type="text">
+                                {% endif %}
+                                {% if signup_data["email"] %}
+                                    <input name="email" placeholder="Email" type="text" value="{{ signup_data["email"] }}">
+                                {% else %}
+                                    <input name="email" placeholder="Email" type="text">
+                                {% endif %}
+                                <input name="password" placeholder="Password" type="password">
+                                <div class="row">
+                                    <button type="submit">Sign Up</button>
+                                    <a href="/login">Log In</a>
+                                </div>
+                            </div>
+                        </form>
+                    {% endif %}
+                </div>
+        </section>
+        <div id="login-background" class="w3-twothird w3-container ">
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -5,11 +5,12 @@ class Config(object):
     #Flask config parameters
     DEBUG = False
     TESTING = False
-    CSRF_ENABLED = True
+    CSRF_ENABLED = False
+    JWT_COOKIE_CSRF_PROTECT = False
     SECRET_KEY = 'WQ7zs08OYSFe9OO1ZmTRgpGqiZo3k5j3'
     JWT_SECRET_KEY = 'f~0@2Gr_&KvE(H"7SV4A.{wB[vA`M=ZY2poPw`?='
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=1)
-    JWT_TOKEN_LOCATION = ["cookies"]
+    JWT_TOKEN_LOCATION = ["cookies", "headers"]
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     #Application config parameters

@@ -38,10 +38,10 @@ class AudioFile(db.Model):
     __tablename__ = 'audio_file'
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(200), nullable=False, unique=True)
-    artists = db.Column(db.String(200))
-    album = db.Column(db.String(200))
-    album_artist = db.Column(db.String(200))
+    title = db.Column(db.String(1000), nullable=False, unique=True)
+    artists = db.Column(db.String(1000))
+    album = db.Column(db.String(1000))
+    album_artist = db.Column(db.String(1000))
     track_lenght = db.Column(db.Integer, nullable=False)
     file_name = db.Column(db.String(1000), nullable=False, unique=True)
     present_on_filesystem = db.Column(db.Boolean, nullable=False)

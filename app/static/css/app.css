@@ -28,3 +28,71 @@ body{
 #login-background{
     background:linear-gradient(90deg, white 0%, var(--middle-blue-green));
 }
+
+.gradientBackground{
+    background: linear-gradient(90deg, var(--middle-blue-green), var(--maximum-blue-purple-2));
+}
+
+.fullHeight{
+    min-height: 100vh;
+}
+
+nav.topNav{
+    padding: 5px;
+}
+
+#manager .w3-container{
+    border-radius: var(--element-radius);
+    max-width: 980px;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 2em;
+    margin: 2em auto;
+    max-height: 80vh;
+}
+
+.listElement .listEntry{
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-around;
+}
+
+.listEntry section{
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.listEntry form{
+    display: flex;
+    justify-content: space-around;
+    flex-flow: wrap;
+}
+
+.listEntry .thumbnail{
+    max-width: 10%;
+}
+
+.listEntry .title{
+    max-width: 30%;
+}
+
+.listEntry .artists{
+    max-width: 30%;
+}
+
+.listEntry .title-lenght{
+    max-width: 10%;
+}
+
+.listEntry .button-area{
+    max-width: 20%;
+}
+
+@media (max-width:500px){
+    .listEntry .artists{
+        display: none;
+    }
+    .listEntry .thumbnail{
+        display: none;
+    }
+}

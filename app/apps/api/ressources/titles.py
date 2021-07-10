@@ -21,6 +21,7 @@ class TitlesList(Resource):
                 "id": result.id,
                 "title": result.title,
                 "artists" : result.artists,
+                "album" : result.artists,
                 "track_lenght" : result.track_lenght,
                 "present_on_filesystem" : result.present_on_filesystem
             }

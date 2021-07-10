@@ -1,0 +1,119 @@
+.overlay {
+    display: none;
+    color: black;
+    font-family: "Helvetica Neue", SegoeUI,  Helvetica, Roboto, sans-serif;
+    font-size: 1.5em;
+}
+.overlay .flex.horizontalCenter{
+    align-items: center;
+}
+.overlay .flex{
+    display: flex;
+}
+.overlay div section.center{
+    margin-bottom: 1em;
+}
+.overlay.open {
+    background-color: rgba(0, 0, 0, 0.1);
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    animation-name: appear;
+    animation-duration: 1s;
+}
+.overlay .loadingContainer{
+    width: 10vw;
+    height: 10vw;
+    margin: auto;
+}
+.overlay .flex.center{
+    justify-content: center;
+}
+.loading {
+    width: 100%;
+    height: 100%;
+    animation-name: rotation;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+.check {
+    width: 3em;
+    height: 3em;
+    background-image: url("/static/icons/feather/check.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.close{
+    background: maroon;
+    border-radius: 100%;
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+}
+.overlay .center {
+    text-align: center;
+    margin: auto;
+}
+
+.overlay .center[data-name="buttons"]{
+    display: flex;
+    justify-content: space-around;
+}
+
+.overlay .center[data-name="inputs"]{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.overlay .center[data-name="inputs"] input{
+    margin: 1em auto;
+}
+
+.overlay .flex {
+    display: flex;
+}
+
+.overlay .flex.between {
+    justify-content: space-between;
+}
+
+.overlay .flex.left {
+    justify-content: left;
+}
+
+.overlay .flex.center {
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay .flex.column {
+    flex-direction: column;
+    display:inline-block;
+    padding: 1em;
+    background-color: white;
+    box-shadow: 1px 1px 10px black;
+    border-radius: var(--element-radius);
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes appear {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

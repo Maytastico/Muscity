@@ -1,6 +1,23 @@
 @import 'pallet.css';
 
-form input, button, form a{
+a.red, button.red{
+    background-color: var(--alert-notification);
+}
+
+a.red, button.red{
+    background-color: var(--alert-notification);
+}
+
+a.highlighted, button.highlighted{
+    background-color: var(--y-in-mn-blue);
+    color: white;
+}
+
+a.red img, button.red img{
+    filter: invert();
+}
+
+ input, button, a{
     display: block;
     margin: 1.2em 0;
     font-size: 1em;
@@ -11,7 +28,7 @@ form input, button, form a{
 }
 
 
-form input{
+ input{
     width: 15em;
     height: 2.5em;
     padding: 0.25em 1em;
@@ -45,13 +62,21 @@ button, a.button{
     border-radius: 20em;
 }
 
-button.round, a.round{
+button.round{
     border-radius: 100%;
-    height:30px;
-    width: 30px;
+    height:40px;
+    width: 40px;
+    padding: 0;
     margin: 5px
 }
 
-button.round img{
-    width: 2em
+button.round div, a.round div{
+    border-radius: 100%;
+    height:100%;
+    width: 100%;
 }
+
+button img{
+    width: 25px;
+}
+

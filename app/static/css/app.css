@@ -45,8 +45,12 @@ nav.topNav{
     border-radius: var(--element-radius);
     max-width: 980px;
     background-color: rgba(255, 255, 255, 0.5);
-    padding: 2em;
+    padding: 1em;
     margin: 2em auto;
+}
+
+.listElement{
+    overflow-y: auto;
     max-height: 80vh;
 }
 
@@ -54,38 +58,46 @@ nav.topNav{
     display: flex;
     flex-flow: wrap;
     justify-content: space-around;
+    padding: 1em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .listEntry section{
     display: flex;
     align-items: center;
+    justify-content:center;
     overflow: hidden;
 }
 
-.listEntry form{
-    display: flex;
-    justify-content: space-around;
-    flex-flow: wrap;
+.listEntry .thumbnail{
+    width: 10%;
 }
 
-.listEntry .thumbnail{
-    max-width: 10%;
+.listEntry div{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    overflow: hidden;
 }
 
 .listEntry .title{
-    max-width: 30%;
+    width: 30%;
 }
 
 .listEntry .artists{
-    max-width: 30%;
+    width: 30%;
+    text-align: center;
 }
 
 .listEntry .title-lenght{
-    max-width: 10%;
+    width: 15%;
 }
 
 .listEntry .button-area{
-    max-width: 20%;
+    width: 15%;
+    display: flex;
+    justify-content: space-around;
+    flex-flow: wrap;
 }
 
 @media (max-width:500px){
@@ -94,5 +106,9 @@ nav.topNav{
     }
     .listEntry .thumbnail{
         display: none;
+    }
+    
+    #manager .w3-container{
+        padding: 0.2em;
     }
 }

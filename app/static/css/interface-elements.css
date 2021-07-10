@@ -22,6 +22,30 @@ div.notify.success{
     color: white;
 }
 
+
+div.deleteDialog.open{
+    top:0;
+    left:0;
+    position: fixed;
+    display: block;
+    width: 100vw;
+    height:100vh;
+}
+.deleteDialog .dialogAbsolute{
+    width: 50%;
+    position:relative;
+    margin: 0 auto;
+    background-color: rgba(255,255,255,1);
+    border-radius: var(--element-radius);
+    padding: 1em;
+}
+.deleteDialog div{
+    margin-bottom: 1em;
+}
+.deleteDialog .message{
+    font-size: 1.2em;
+}
+
 @keyframes appear {
     from{
         opacity: 0;
@@ -30,3 +54,4 @@ div.notify.success{
         opacity: 1;
     }
 }
+

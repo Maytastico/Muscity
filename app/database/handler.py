@@ -38,7 +38,7 @@ class AudioFile(db.Model):
     __tablename__ = 'audio_file'
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(1000), nullable=False, unique=True)
+    title = db.Column(db.String(1000), nullable=False)
     artists = db.Column(db.String(1000))
     album = db.Column(db.String(1000))
     album_artist = db.Column(db.String(1000))

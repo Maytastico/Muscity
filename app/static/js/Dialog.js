@@ -44,9 +44,15 @@ class Dialog {
         }
         if (settings.hasOwnProperty("feedbackMsg"))
             this.addMessage("feedback", settings["feedbackMsg"]);
+
+        if (settings.hasOwnProperty("generateInputContainer"))
+            if (settings["generateInputContainer"] === true)
+                this.generateInputContainer();
+
         if (settings.hasOwnProperty("generateButtonContainer"))
             if (settings["generateButtonContainer"] === true)
                 this.generateButtonContainer();
+        
         if (settings.hasOwnProperty("open"))
             if (settings["open"] === true)
                 this.open();
@@ -100,6 +106,10 @@ class Dialog {
             if (properties["action"] === "destroy") {
                 closeButton.addEventListener("click", () => {
                     this.destroy();
+                    if (properties.hasOwnProperty("return")) {
+                        if(properties["return"] == "boolean")
+                            return true; 
+                    }
                 });
                 this.dialog.appendChild(closeButtonContainer).appendChild(closeButton).appendChild(icon);
             }
@@ -195,6 +205,8 @@ class Dialog {
         this.dialog.appendChild(buttonContainer);
     }
 
+   
+
     /**
      * @param name
      * @param properties
@@ -224,18 +236,67 @@ class Dialog {
 
     /**
      * @param name
+     * @param properties
+     * @returns {HTMLAnchorElement}
+     * name: The name of the button so you can identify it later on.
+     * properties: It is an object that should contain at least an message.
+     *  Example: {msg:"Cancel"}
+     *  If you want modify the style of the button, you can add several classes.
+     *  Example: {additionalClasses:["icon", "radial"]}
+     * It returns a reference to the created button, so you can add an event listener to the button.
+     * Adds buttons to an existing container. So it has to be generated first.
+     * It is useful, if you want to add some interactivity to your dialog.
+     */
+     addInput(name, properties) {
+        const inputContainer = document.querySelector(`.overlay[data-id="${this.number}"] section[data-name="inputs"]`);
+        if (inputContainer !== null) {
+            const input = document.createElement("input");
+            input.dataset.name = name;
+            if (properties.hasOwnProperty("name"))
+                input.name = properties["name"];
+            if (properties.hasOwnProperty("placeholder"))
+                input.placeholder = properties["placeholder"];
+            if (properties.hasOwnProperty("value"))
+                input.value = properties["value"];
+            if (properties.hasOwnProperty("type"))
+                input.type = properties["type"];
+            if (properties.hasOwnProperty("additionalClasses")) {
+                for (const style of properties["additionalClasses"])
+                    input.classList.add(style);
+            }
+            return inputContainer.appendChild(input);
+        }
+    }
+
+     /**
+     * Generate a container for input elements.
+     * Should be executed before you add input elements.
+     */
+      generateInputContainer() {
+        const inputContainer = document.createElement("section");
+        inputContainer.dataset.name = "inputs";
+        inputContainer.classList.add("center");
+        this.dialog.appendChild(inputContainer);
+    }
+    /**
+     * @param name
      * @param msg
      * name: The name you want to call the object. Can come to errors, if you have duplicate names.
      * msg: The message you want to give to the user.
      * Creates a new message and adds it to the overlay element.
      * It is useful, if you want to give feedback to the user.
      */
-    addMessage(name, msg) {
-        const messageContainer = document.createElement("section");
+    addMessage(name, msg, additionalClasses=null) {
+        const messageContainer = document.createElement("div");
+        if(additionalClasses!=null){
+            for (const style of additionalClasses)
+            messageContainer.classList.add(style);
+        }
         messageContainer.dataset.name = name;
         messageContainer.classList.add("flex");
         messageContainer.classList.add("center");
         const message = document.createTextNode(msg);
+        
         this.dialog.appendChild(messageContainer).appendChild(message);
     }
 

@@ -101,7 +101,7 @@ class Titles(Resource):
         if modified == True:
             db.session.commit()
             return response, 202
-        return response, 200
+        return response, 400
 
     @jwt_required()
     def delete(self, id):

@@ -3,13 +3,10 @@
 <section id="manager" class="gradientBackground fullHeight">
     <nav class="topNav">
     </nav>
-    <section id="dialogContainer" class="horizontal-center vertical-center">
-        <edit-entry v-for="item in items" v-bind:key="item.id" :item="item"></edit-entry>
-    </section>
     <section class="w3-container horizontal-center">
+        <button id="addTrack" class="round"><img src="/static/icons/feather/plus.svg"></button>
         <div class="listElement" id="audioView">
             <list-entry v-for="item in items" v-bind:key="item.id" :item="item"></list-entry>
-            <edit-entry v-for="item in items" v-bind:key="item.id + item.title" :item="item"></edit-entry>
         </div>
     </section>
 

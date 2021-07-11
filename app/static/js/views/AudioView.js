@@ -3,30 +3,81 @@ Vue.component('list-entry', {
         item: AudioModel,
     },
     methods: {
-        say: function (message) {
+        deleteEntry: function (message) {
             AudioView.deleteDialog(message)
+        },
+        edit: function (message){
+            AudioView.editDialog(message);
         }
     },
-    template: '<div class="listEntry"><section class="thumbnail"><div><img src="/static/img/example.jpg"></div></section><section class="title">{{item.title}}</section><section class="artists">{{item.artists}}</section><section class="title-lenght">{{item.track_lenght}}</section><section class="button-area"><button class="round red" v-on:click="say(item)"><img src="/static/icons/feather/trash-2.svg"></button><button @click="item.openEdit = true" class="round"><img src="/static/icons/feather/edit-2.svg"></button></section></div>',
+    template: '<div class="listEntry"><section class="thumbnail"><div><img src="/static/img/example.jpg"></div></section><section class="title">{{item.title}}</section><section class="artists">{{item.artists}}</section><section class="title-lenght">{{item.track_lenght}}</section><section class="button-area"><button class="round red" v-on:click="deleteEntry(item)"><img src="/static/icons/feather/trash-2.svg"></button><button v-on:click="edit(item)" class="round"><img src="/static/icons/feather/edit-2.svg"></button></section></div>',
 });
 
-Vue.component('edit-entry', {
-    props: {
-        item: AudioModel,
-    },
-    data: function () {
-        return {
-            title: "Hi",
-            artists: "Miau",
-            album: "Hau"
+document.querySelector("#addTrack").addEventListener("click", () => {
+    let addView =  new Dialog({
+        generateOverlay: true,
+        feedbackMsg: `Add new Track`,
+        generateButtonContainer: true,
+        generateInputContainer: true,
+        open: true
+    });
+    
+
+    let titleInput = addView.addInput('editTitle',{
+        placeholder: "Title",
+    });
+
+    let artistsInput = addView.addInput('editArtist',{
+        placeholder: "Artist",
+    });
+    
+    let albumInput = addView.addInput('editAlbum',{
+        placeholder: "Album",
+    });
+
+    let trackLenghtInput = addView.addInput('trackLenghtInput',{
+        placeholder: "Tracklenght in seconds",
+        type: "number",
+    });
+
+    addView.addButton("editEntry", {
+        "msg": "Add"
+    }).addEventListener("click", () => {
+        let index = 3;
+        if(titleInput.value.length < 1){
+            addView.addMessage("ErrorTitle", "A new entry needs a title", ["notify", "alert"]);
+            index--;
         }
-    },
-    methods: {
-        put: function(item){
-            item.put("Hi")
+        if(artistsInput.value.length < 1){
+            addView.addMessage("ErrorTitle", "A new entry needs an artist", ["notify", "alert"]);
+            index--;
         }
-    },
-    template: '<section v-if="item.openEdit" @close="item.openEdit = false" class="overlay flex center horizontalCenter open"><div  class="flex center column horizontalCenter"><h2 data-name="feedback" class="flex center">Edit {{ item.title }}</h2><section data-name="inputs" class="center"><input v-model="title" v-bind:placeholder="{item.title}" ><input v-model="artists" v-bind:placeholder="{item.artists}""><input v-model="album" v-bind:placeholder="{item.album}"></section><section data-name="buttons" class="center"><button v-on:click="put(item)" class="highlighted">Commit</button><button @click="$emit(\'close\')">Cancel</button></section></div></section>',
+        if(albumInput.value.length < 1){
+            addView.addMessage("ErrorTitle", "A new entry needs an album",  ["notify", "alert"]);
+            index--;
+        }
+        if(index == 3){
+            let newAudioObj = new AudioModel(null, titleInput.value, artistsInput.value, albumInput.value, trackLenghtInput.value)
+            self.audioData.push(newAudioObj)
+            newAudioObj.add();
+            let success = new Dialog({
+                generateOverlay: true,
+                feedbackMsg: `Added successfully`,
+                type: "check",
+                close: {action:"destroy"},
+                open: true
+            })
+        }
+        
+    });
+
+    addView.addButton("editEntry", {
+        "msg": "Close",
+        additionalClasses: ['highlighted']
+    }).addEventListener("click", () => {
+        console.log("canceled");
+        addView.destroy();
+    });
 });
 
 class AudioView {
@@ -40,7 +91,7 @@ class AudioView {
             el: '#audioView',
             data: {
                 items: self.audioData,
-
+                showEdit: false
             },
 
 
@@ -76,6 +127,71 @@ class AudioView {
     }
 
     static editDialog(audioobj) {
+        let editView =  new Dialog({
+            generateOverlay: true,
+            feedbackMsg: `Edit ${audioobj.title}`,
+            generateButtonContainer: true,
+            generateInputContainer: true,
+            open: true
+        });
+        
 
+        let titleInput = editView.addInput('editTitle',{
+            value: audioobj.title,
+        });
+
+        let artistsInput = editView.addInput('editArtist',{
+            value: audioobj.artists,
+        });
+        
+        let albumInput = editView.addInput('editAlbum',{
+            value: audioobj.album,
+        });
+
+        editView.addButton("editEntry", {
+            "msg": "Edit"
+        }).addEventListener("click", () => {
+            let toEdit = []
+            let idOfElement = 0
+            for (let i = 0; i < self.audioData.length; i++) {
+                if (self.audioData[i].id == audioobj.id) {
+                    idOfElement = i;
+                    break;
+                }
+            }   
+            if(titleInput.value.length > 1){
+                toEdit.push({tilte: titleInput.value}) ;
+                self.audioData[idOfElement].title = titleInput.value;
+            }
+            if(artistsInput.value.length > 1){
+                toEdit.push({artists: artistsInput.value}) ;
+                self.audioData[idOfElement].artists = artistsInput.value;
+            }
+            if(albumInput.value.length > 1){
+                toEdit.push({album: albumInput.value});
+                self.audioData[idOfElement].album = albumInput.value;
+            }
+            if(audioobj.title != self.audioData[idOfElement].title || audioobj.title != self.audioData[idOfElement].artists || audioobj.album != self.audioData[idOfElement].album){
+                self.audioData[idOfElement].update();
+                let success = new Dialog({
+                    generateOverlay: true,
+                    feedbackMsg: `Edited ${self.audioData[idOfElement].title} successfully`,
+                    type: "check",
+                    close: {action:"destroy"},
+                    open: true
+                })
+            }
+            
+        });
+
+        editView.addButton("editEntry", {
+            "msg": "Close",
+            additionalClasses: ['highlighted']
+        }).addEventListener("click", () => {
+            console.log("canceled");
+            editView.destroy();
+        });
+
+        
     }
 }

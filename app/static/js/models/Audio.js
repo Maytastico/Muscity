@@ -5,7 +5,7 @@ class AudioModel{
         return Math.round(min) +":"+ Math.round(sec);
     }
 
-    constructor(id, title, artists,album, title_lenght){
+    constructor(id=null, title, artists,album, title_lenght){
         this.id = id;
         this.title = title;
         this.artists = artists;
@@ -24,15 +24,28 @@ class AudioModel{
         });
     }
 
-    put(){
-        console.log("hi");
-        /* fetch('http://localhost:5000/api/titles/'+this.id, {
-        method: 'PUT',
-        body: JSON.stringify(rename)
+    update(){
+        let rename = {
+            title: this.title,
+            artists: this.artists,
+            album: this.album
+        }
+        let form_data = new FormData();
+
+        for ( let key in rename ) {
+            form_data.append(key, rename[key]);
+        }
+        fetch('http://localhost:5000/api/titles/'+this.id, {
+            method: 'PUT',
+            body: form_data
         })
         .then(data => {
             console.log('Success:', data);
-        }); */
+        });
+    }
+
+    add(){
+        console.log("added");
     }
     
 }

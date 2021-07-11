@@ -64,7 +64,7 @@ def login_post():
         #Cehcks whether the password exists
         if check_password_hash(user.password, password):
             #Creates a jwt access token so the user can access the api
-            response = make_response(redirect(url_for('muscity_blueprint.muscity')))
+            response = make_response(redirect(url_for('muscity_blueprint.manager')))
             access_token = create_access_token(identity=user.email)
             set_access_cookies(response, access_token)
             #uses flask login to flag the user as authorized

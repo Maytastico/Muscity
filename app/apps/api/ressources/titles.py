@@ -23,6 +23,7 @@ class TitlesList(Resource):
                 "artists" : result.artists,
                 "album" : result.artists,
                 "track_lenght" : result.track_lenght,
+                "file_name": result.file_name,
                 "present_on_filesystem" : result.present_on_filesystem
             }
             i = i + 1

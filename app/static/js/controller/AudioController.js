@@ -21,7 +21,7 @@ class AudioController{
         let i = 0;
         entries.forEach((element) => {
             let audioobj = element[1];
-            list[i] = new AudioModel(audioobj.id,audioobj.title, audioobj.artists, audioobj.album, audioobj.track_lenght);
+            list[i] = new AudioModel(audioobj.id,audioobj.title, audioobj.artists, audioobj.album, audioobj.track_lenght, audioobj.file_name);
             i++;
         });
         return list

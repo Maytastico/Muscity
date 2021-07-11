@@ -2,5 +2,6 @@ app/music/**
 app/env/**
 **/__pycache__
 app/app_data.db
+cover/**
 .DS_Store
 *.mp3

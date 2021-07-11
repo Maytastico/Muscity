@@ -10,7 +10,7 @@ Vue.component('list-entry', {
             AudioView.editDialog(message);
         }
     },
-    template: '<div class="listEntry"><section class="thumbnail"><div><img src="/static/img/example.jpg"></div></section><section class="title">{{item.title}}</section><section class="artists">{{item.artists}}</section><section class="title-lenght">{{item.track_lenght}}</section><section class="button-area"><button class="round red" v-on:click="deleteEntry(item)"><img src="/static/icons/feather/trash-2.svg"></button><button v-on:click="edit(item)" class="round"><img src="/static/icons/feather/edit-2.svg"></button></section></div>',
+    template: '<div class="listEntry"><section class="thumbnail"><div><img :src="item.thumbnail"></div></section><section class="title">{{item.title}}</section><section class="artists">{{item.artists}}</section><section class="title-lenght">{{item.track_lenght}}</section><section class="button-area"><button class="round red" v-on:click="deleteEntry(item)"><img src="/static/icons/feather/trash-2.svg"></button><button v-on:click="edit(item)" class="round"><img src="/static/icons/feather/edit-2.svg"></button></section></div>',
 });
 
 document.querySelector("#addTrack").addEventListener("click", () => {

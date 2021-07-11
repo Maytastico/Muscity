@@ -8,14 +8,15 @@ class Dialog {
     static generated = 0;
 
     /**
-     * @param settings
-     * settings: Contains certain attributes that are necessary to create an overlay.
+     * @param settings Contains certain attributes that are necessary to create an overlay.
      *  Attributes:
-     *       {generateOverlay:true}: Generates a container where all elements will be generated
+     *       {generateOverlay:true}: Generates a container where all elements will be generated in
      *       close: Adds an close button to the overlay.
      *       {type:"loading"}: Adds an rotating circle to the overlay
      *       {type:"exclamationMark"}: Adds an "!" to the overlay
      *       feedbackMsg: Adds an Message to the overlay.
+     *       generateButtonContainer: true generates the button container
+     *      generateInputContainer: true generates a container for input fields
      */
     constructor(settings = {}) {
         Dialog.generated++;
@@ -235,17 +236,19 @@ class Dialog {
     }
 
     /**
-     * @param name
-     * @param properties
-     * @returns {HTMLAnchorElement}
-     * name: The name of the button so you can identify it later on.
-     * properties: It is an object that should contain at least an message.
-     *  Example: {msg:"Cancel"}
-     *  If you want modify the style of the button, you can add several classes.
-     *  Example: {additionalClasses:["icon", "radial"]}
-     * It returns a reference to the created button, so you can add an event listener to the button.
-     * Adds buttons to an existing container. So it has to be generated first.
-     * It is useful, if you want to add some interactivity to your dialog.
+     * @param name The name of the input field so you can identify it later on.
+     * @param properties Is an object that contains how the field should look and behave.
+     *  Example: {placeholder:"Artist", value:"How I became a woman"}
+     *  If you want modify the style of the button, you can add additional classes.
+     *  Example: {additionalClasses:["icon", "radial"]}.
+     * You can additionaly add a predefined value or placeholder attribute
+     * @returns {HTMLAnchorElement} This method returns a reference to the created input field,
+     * so you can add an event listener or get or 
+     * modify the properties of the field.
+     * 
+     * 
+     * This method add a button to a button container so it needs an input container
+     * you can generate one inside of the constructor of the instance.
      */
      addInput(name, properties) {
         const inputContainer = document.querySelector(`.overlay[data-id="${this.number}"] section[data-name="inputs"]`);
@@ -270,7 +273,7 @@ class Dialog {
 
      /**
      * Generate a container for input elements.
-     * Should be executed before you add input elements.
+     * Should be executed before you add an input element.
      */
       generateInputContainer() {
         const inputContainer = document.createElement("section");
@@ -279,12 +282,13 @@ class Dialog {
         this.dialog.appendChild(inputContainer);
     }
     /**
-     * @param name
-     * @param msg
-     * name: The name you want to call the object. Can come to errors, if you have duplicate names.
-     * msg: The message you want to give to the user.
+     * @param name The name you want to call the object later on. Don't use duplicate names
+     * @param msg The message you want to give to the user. 
+     * @param additionalClasses Accepts a list of classes to style the message accordingly.
+     * 
      * Creates a new message and adds it to the overlay element.
      * It is useful, if you want to give feedback to the user.
+     *
      */
     addMessage(name, msg, additionalClasses=null) {
         const messageContainer = document.createElement("div");

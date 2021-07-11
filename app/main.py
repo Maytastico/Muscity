@@ -87,7 +87,6 @@ def create_app():
 
 #Initializes the application
 if __name__ == '__main__':
-    #print(AudioDirHandler.get_contents_inside())
     app = create_app()
     app.run()
     

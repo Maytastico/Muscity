@@ -16,7 +16,7 @@ class Config(object):
     #Application config parameters
     FILE_DIR = os.getcwd() + '/music'
     ARTIST_COVER_DIR = FILE_DIR + '/artist_cover'
-    TITLE_COVER_DIR = FILE_DIR + '/title_cover'
+    TITLE_COVER_DIR = os.getcwd() + "/static/img" + '/cover'
     ALBUM_COVER_DIR = FILE_DIR + '/album_cover'
 
 class ProductionConfig(Config):

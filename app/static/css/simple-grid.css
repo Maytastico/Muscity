@@ -6,12 +6,6 @@
   margin: auto;
 }
 
-.vertical-center {
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
 
 .container{
   height:100vh;
@@ -26,6 +20,10 @@
 
 .row.around{
   justify-content: space-around;
+}
+
+.row.between{
+  justify-content: space-between;
 }
 
 .row.center{

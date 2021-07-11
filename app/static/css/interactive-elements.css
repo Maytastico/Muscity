@@ -17,7 +17,7 @@ a.red img, button.red img{
     filter: invert();
 }
 
- input, button, a{
+form input,form button,input, button, a{
     display: block;
     margin: 1.2em 0;
     font-size: 1em;
@@ -49,7 +49,7 @@ input:focus, button:focus, a.button:focus{
 
 
 
-button, form a, a.button{
+form button,button, form a, a.button{
     padding: 0.5em 2em;
     height: 2.5em;
     border: none;
@@ -57,6 +57,7 @@ button, form a, a.button{
 
 button, a.button{
     text-align: center;
+    text-decoration: none;
     background-color: var(--middle-blue-green);
     border: none;
     border-radius: 20em;
@@ -67,7 +68,7 @@ button.round{
     height:40px;
     width: 40px;
     padding: 0;
-    margin: 5px
+    margin: 1.2em 0;
 }
 
 button.round div, a.round div{

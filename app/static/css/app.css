@@ -71,6 +71,16 @@ nav.topNav{
 
 .listEntry .thumbnail{
     width: 10%;
+    
+}
+.listEntry .thumbnail div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.listEntry .thumbnail div img{
+    transform: scale(2);
 }
 
 .listEntry div{
